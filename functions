@@ -1,0 +1,62 @@
+https://www.codequoi.com/en/threads-mutexes-and-concurrent-programming-in-c/
+
+USLEEP:
+https://man7.org/linux/man-pages/man3/usleep.3.html
+Suspende la ejecucion de un hilo por usec microsegundos
+
+GETTIMEOFDAY:
+obtiene la hora actual como segundos y microsegundos y lo almacena en la estructura de timeval
+
+PTHREAD CREATE:
+https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_create.html#:~:text=The%20pthread_create()%20function%20is,thread's%20attributes%20are%20not%20affected.
+It is used to create a thread with the atributes specified by attr, within a process. If attr is NULL, there will be used the default atributes. if successfull return 0 and the ID of the thread it is stored in the thread.
+
+PTHREAD DETACH:
+https://man7.org/linux/man-pages/man3/pthread_detach.3.html
+It isusaed to change the state of a thread to detach. The resoudrces of a detach thread go back to the system without the need of joining the threads.
+Es raro, a veces falla
+
+PTHREAD JOIN:
+https://pubs.opengroup.org/onlinepubs/000095399/functions/pthread_join.html
+https://man7.org/linux/man-pages/man3/pthread_join.3.html
+Will suspend execution of the ~calling~ thread until the ~target~ thread terminates.
+THis function waits for the thread specified by thread to terminate. If if has already termianted then it return immediately. The thread specified by thread must be joinable. 
+If multiple threads try to join the same thread the results are undefined, if the thread calling the function is canceled, then the target thread will remain joinable. 
+RETURNS 0 on succes.
+
+PTHREAD_MUTEX:
+the Mutex structure is used to loc/unlock threads and perform operations without any other threads interfering. 
+
+PTHREAD MUTEX INIT:
+Initialises the mutex ~referenced~ by mutex. Upon succesful initialization, the state of the mutex becomes initialised and ~UNLOCK~
+
+PTHREAD MUTEX DESTROY:
+destroys the mutex object ~referenced~ by muted, it becomes uninitialised. I may cause the funciont to set the oject referenced by mutex to an invalid value. A destroy mutex can be re-initializsed, the results of referencing the object after it has been destroy are undefined. 
+It is safe to destroy and initialised mutex that is UNLOCKED. But attempting to destroy a locked mutex results in undefined behavior.
+
+https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_init.html
+If succesful tehy both return 0, check for errorval.
+
+PTHREAD MUTEX LOCK:
+
+The mutex object ~referenced~ by mutex is locked by the calling of this function. If its already locked, ~the calling thread blocks~ until the mutex becomes available. Returns with the mutexobject referenced by mutex in th elocked state with the callingthread as its owner.
+
+PTHREAD MUTEX UNLOCK: 
+Releases the mutex object referenced by mutex. The manner in which a mutex is released is dependent upon the mutex's type attribute. If there are threads blocked on the mutex object referenced by mutex when the function is called, resultinin the mutex toi become available. If a signal is delivered to a thread waiting for a mutex, upon return form the signa handler the thread resumes waiting for the mutex as if it was not interrupted. 
+
+On succes they return 0, otherwise an error number is return to indicate error. 
+https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_lock.html
+
+
+9722397 1 has taken the left fork 1
+9731397 1 has taken the right fork 2
+9739397 1 is eating
+9746397 1 is sleeping
+9751397 2 has taken the left fork 2
+9773397 2 has taken the right fork 1
+9783397 2 is eating
+9797397 2 is sleeping
+9809397 2 is thinking
+9819397 1 is thinking
+9833397 1 has taken the left fork 1
+9845397 2 has taken the left fork 2
