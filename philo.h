@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:29:02 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/29 12:44:12 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:13:01 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef enum e_code
 	LOCK,
 	UNLOCK,
 	DESTROY,
+	INIT,
+	CREATE,
+	JOIN,
 }			t_code;
 
 typedef enum e_lock
@@ -98,7 +101,7 @@ int			ft_msj_error(t_data *data, char *str, int u);
 long long	ft_atol(t_data *data, const char *str);
 int			get_time(void);
 void		ft_sleep(int time);
-void		ft_write(t_philo *philo, t_lock action, int write);
+void		ft_write(t_philo *philo, t_lock action);
 void		ft_free(t_data *data);
 int			get_mutex_int(t_data *data, t_philo *philo, int option);
 //----------------------PHILOS---------------------------------------
@@ -111,10 +114,12 @@ void		ft_init_mutex(t_data *data);
 void		*ft_monitor(void *aux);
 void		ft_monitor_mutex(t_data *data, t_lock code, \
 t_philo *philo, int option);
-int			ft_thread_error(t_data *data, int error_code);
+void		ft_thread(t_code code, void *(*func)(void *), \
+void *aux, int monitor);
 //----------------------MUTEX----------------------------------------
 void		ft_less_line_mutex(t_philo *philo, t_lock code, int option);
-void		ft_mutex(t_data *data, t_code code, pthread_mutex_t *mutex, int p);
+void		ft_mutex(t_data *data, t_code code, pthread_mutex_t *mutex);
+void		ft_clean_mutex(t_data *data);
 //----------------------BORRAR---------------------------------------
 void		printf_data(t_data *data, char *str);
 void		printf_philos(t_data *data, char *str);

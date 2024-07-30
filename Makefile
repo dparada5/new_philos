@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 11:04:19 by dparada           #+#    #+#              #
-#    Updated: 2024/07/29 12:41:26 by dparada          ###   ########.fr        #
+#    Updated: 2024/07/30 10:29:11 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,8 @@ SRC_FILES = main \
 			monitor \
 			mutex \
 			one_philo \
-			handle_error \
-			utils/philo_utils \
-			utils/prints \
+			threads \
+			philo_utils \
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o,$(SRC_FILES)))

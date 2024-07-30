@@ -6,11 +6,11 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:34:12 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/29 12:31:05 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:16:05 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../philo.h"
+#include "../philo.h"
 
 static long long	ft_fatoi(t_data *data, int i, long long n, const char *str)
 {
@@ -69,18 +69,17 @@ int	get_mutex_int(t_data *data, t_philo *philo, int option)
 {
 	int	aux;
 
-	aux = 0;
 	if (!option)
 	{
-		pthread_mutex_lock(&data->dead_lock);
+		ft_mutex(data, LOCK, &data->dead_lock);
 		aux = data->dead_flag;
-		pthread_mutex_unlock(&data->dead_lock);
+		ft_mutex(data, UNLOCK, &data->dead_lock);
 	}
 	else if (option)
 	{
-		pthread_mutex_lock(philo->meal_lock);
+		ft_mutex(data, LOCK, &data->meal_lock);
 		aux = philo->last_meal;
-		pthread_mutex_unlock(philo->meal_lock);
+		ft_mutex(data, UNLOCK, &data->meal_lock);
 	}
 	return (aux);
 }

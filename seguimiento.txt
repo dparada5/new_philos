@@ -8,3 +8,7 @@ setarch `uname -m` -R $SHELL
 5 2000 500 200
 5 1000 200 200 
 5 1000 500 200 one died
+
+fuera de monitor
+// printf("philo dude id ml fl nm np\n");
+// printf("philo dude %d %d %d %d %d\n", philo->id, philo->meals, data->full, data->number_of_meals, data->number_of_philos);

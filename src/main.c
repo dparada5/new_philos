@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:28:23 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/29 15:00:32 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:09:36 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_init_data(t_data *data, char **argv)
 		data->number_of_meals = ft_atol(data, argv[5]);
 	else
 		data->number_of_meals = -2;
-	if (!data->error && data->number_of_meals == 0 )
+	if (!data->error && data->number_of_meals == 0)
 		data->error = 1;
 	if (!data->error && !data->number_of_philos)
 		ft_msj_error(data, "Can't have 0 philos", 0);
@@ -53,8 +53,8 @@ int	main(int argc, char **argv)
 	ft_init_philos(data);
 	if (!data->error && !ft_check_philos(data))
 	{
-		pthread_join(data->philo->thread, NULL);
-		ft_mutex(data, DESTROY, &data->philo->r_fork->fork, 0);
+		ft_thread(JOIN, NULL, data->philo, 0);
+		ft_clean_mutex(data);
 		ft_free(data);
 		return (0);
 	}

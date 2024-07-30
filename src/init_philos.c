@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:05:15 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/26 12:06:52 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 10:17:30 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	ft_init_mutex(t_data *data)
 	t_fork	*fork;
 
 	i = 0;
-	pthread_mutex_init(&data->dead_lock, NULL);
-	pthread_mutex_init(&data->meal_lock, NULL);
-	pthread_mutex_init(&data->write_lock, NULL);
+	ft_mutex(data, INIT, &data->dead_lock);
+	ft_mutex(data, INIT, &data->meal_lock);
+	ft_mutex(data, INIT, &data->write_lock);
 	data->fork_t = malloc(sizeof(t_fork) * data->number_of_philos);
 	if (!data->fork_t)
 		printf("error");
 	while (i < data->number_of_philos)
 	{
 		fork = data->fork_t + i;
-		pthread_mutex_init(&fork->fork, NULL);
+		ft_mutex(data, INIT, &fork->fork);
 		fork->id = i + 1;
 		i++;
 	}
