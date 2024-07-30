@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:43:17 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/30 11:13:53 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:45:04 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,17 @@ void	error(t_data *data, int error_code, t_code code)
 		return ;
 	if (error_code == EINVAL && (code == DESTROY || code == LOCK))
 		ft_msj_error(data, "Invalid mutex.", 0);
+	if (error_code == EBUSY && code == DESTROY)
+		ft_msj_error(data, "The implementation has detected an " \
+		"attempt to destroy the object referenced by mutex while " \
+		"it is locked or referenced (for example, while being used " \
+		"by another thread.", 0);
 	if (error_code == EAGAIN)
 		ft_msj_error(data, "The system lacked the necessary resources.", 0);
 	if (error_code == EDEADLK)
 		ft_msj_error(data, "The current thread already owns the mutex.", 0);
+	if (error_code == EPERM && code == UNLOCK)
+		ft_msj_error(data, "The current thread does not own the mutex.", 0);
 }
 
 void	ft_mutex(t_data *data, t_code code, pthread_mutex_t *mutex)

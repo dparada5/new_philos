@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 15:42:20 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/30 11:13:14 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:29:49 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_init_thread(t_data *data, int i)
 		return ;
 	data->start = get_time();
 	aux = data->philo;
-	while (i < data->number_of_philos)
+	while (!data->error && i < data->number_of_philos)
 	{
 		ft_thread(CREATE, ft_dinner, aux, 0);
 		i++;

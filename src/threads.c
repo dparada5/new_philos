@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:14:45 by dparada           #+#    #+#             */
-/*   Updated: 2024/07/30 11:10:14 by dparada          ###   ########.fr       */
+/*   Updated: 2024/07/30 11:36:25 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_thread_error(t_data *data, int error_code, t_code code)
 {
+	if (error_code == 0)
+		return (0);
 	if (error_code == EAGAIN)
 		ft_msj_error(data, "Insufficient resources to " \
 		"create another thread.", 0);
