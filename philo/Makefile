@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 11:04:19 by dparada           #+#    #+#              #
-#    Updated: 2024/07/30 10:29:11 by dparada          ###   ########.fr        #
+#    Updated: 2024/07/30 11:53:43 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(PHILO_H)| $(OBJF)
 $(OBJF):
 		@mkdir -p $(OBJ_DIR)
 
-
 compiling:
 		@echo "$(YELLOW)Compiling Philosopher: $(RESET)"
 
@@ -75,4 +74,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re compiling bonus compiling_bonus
+.PHONY: all clean fclean re compiling bonus
